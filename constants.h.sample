@@ -1,0 +1,13 @@
+#define CTA_API_KEY "yourkey" // get key at: http://www.transitchicago.com/developers/traintrackerapply.aspx
+#define CTA_STOP_ID "30282" // download zip of stops: http://www.transitchicago.com/developers/ttdocs/#_Toc296199909
+#define CTA_STOP_NAME "Brown Line South"
+#define SCRIPT_PATH "/root/cta.py" // path to Linux-side script
+#define DELIMETER " " // display train times with space in between
+
+#define BUTTON_PIN A0
+#define BACKLIGHT_PIN 8
+#define LCD_PINS 2,3,4,5,6,7
+
+#define SHOW_RESULTS_DELAY 5000
+#define BUTTON_DEBOUNCE_DELAY 5
+
