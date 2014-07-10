@@ -24,18 +24,18 @@ A Python script uploaded to the Linux side of the Yun queries the [CTA Train Tra
 
 3. Upload cta.py script to Linux side of Yun via SCP: 
 
-```scp cta.py root@arduino.local:/root``` 
+    ```scp cta.py root@arduino.local:/root``` 
 
 4. SSH into Yun: 
 
-```ssh root@arduino.local``` 
+    ```ssh root@arduino.local``` 
 
-and install the python-expat library:
+    and install the python-expat library:
 
-```
-opkg update
-opkg install python-expat
-```
+    ```
+    opkg update
+    opkg install python-expat
+    ```
 
 5. Copy constants.h.sample file in this repo to constants.h, and set ```CTA_API_KEY``` constant to your developer key.
 
