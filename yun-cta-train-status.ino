@@ -3,20 +3,23 @@
 #include "constants.h"
 
 LiquidCrystal lcd(LCD_PINS);
+
 boolean lastButton = LOW;
 boolean currentButton = LOW;
 
 
 void setup() {
   pinMode(BUTTON_PIN, INPUT);
-  pinMode(BACKLIGHT_PIN, OUTPUT);
+  pinMode(LCD_BACKLIGHT_PIN, OUTPUT);
+  
   lcd.begin(16,2);
-  lcd.clear();
-  digitalWrite(BACKLIGHT_PIN, HIGH);
-  lcd.print("Initializing...");
+  digitalWrite(LCD_BACKLIGHT_PIN, HIGH);
+  lcd.print(START_MESSAGE);
+  
   Bridge.begin();
 //  Serial.begin(9600);
-  digitalWrite(BACKLIGHT_PIN, LOW);
+
+  digitalWrite(LCD_BACKLIGHT_PIN, LOW);
   lcd.clear();
 }
 
@@ -26,14 +29,14 @@ void loop() {
    if (lastButton == LOW && currentButton == HIGH) {
      lcd.clear();
      lcd.setCursor(0,0);
-     digitalWrite(BACKLIGHT_PIN, HIGH);
+     digitalWrite(LCD_BACKLIGHT_PIN, HIGH);
      lcd.print(CTA_STOP_NAME);
      
      getTrainTimes();
      
      delay(SHOW_RESULTS_DELAY);
      
-     digitalWrite(BACKLIGHT_PIN, LOW);
+     digitalWrite(LCD_BACKLIGHT_PIN, LOW);
      lcd.clear();
    }
    
@@ -55,7 +58,7 @@ void getTrainTimes() {
   p.addParameter(SCRIPT_PATH);
   p.addParameter(CTA_API_KEY);
   p.addParameter(CTA_STOP_ID);
-  p.addParameter(DELIMETER);
+  p.addParameter(MINUTES_DELIMETER);
   p.run();
   
   lcd.setCursor(0,1);

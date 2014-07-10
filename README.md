@@ -33,7 +33,7 @@ A Python script uploaded to the Linux side of the Yun queries the [CTA Train Tra
 
 8. Upload the sketch to the Yun.
 
-9. Once the "Initializing..." message disappears, push the button. The LCD will light up, the train station name will appear in the first row, and after a second, the train times on the second row. After five seconds, the LCD backlight will turn off. You can push the button again to query anew.
+9. Once the "Starting..." message disappears, push the button. The LCD will light up, the train station name will appear in the first row, and after a second, the train times on the second row. After five seconds, the LCD backlight will turn off. You can push the button again to query anew.
 
 
 
