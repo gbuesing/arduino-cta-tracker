@@ -28,7 +28,6 @@ void loop() {
    
    if (lastButton == LOW && currentButton == HIGH) {
      lcd.clear();
-     lcd.setCursor(0,0);
      digitalWrite(LCD_BACKLIGHT_PIN, HIGH);
      lcd.print(CTA_STOP_NAME);
      
