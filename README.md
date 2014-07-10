@@ -4,6 +4,12 @@ Code and instructions for making an [Arduino Yun](http://arduino.cc/en/Main/Ardu
 
 A Python script uploaded to the Linux side of the Yun queries the [CTA Train Tracker API](http://www.transitchicago.com/developers/traintracker.aspx) and returns results to the Arduino sketch in a ready-to-display format.
 
+Here's what this looks like wired to a breadboard:
+
+![Breadboarded prototype](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/prototype.jpg)
+
+To finish the project, I plan to solder the circuit to a protoshield and place in an enclosure which I can mount next to the front door.
+
 
 ##Parts Needed
 
@@ -45,7 +51,7 @@ A Python script uploaded to the Linux side of the Yun queries the [CTA Train Tra
 
 8. Add parts to the breadboard and wire up -- see the Breadboard Wiring Diagram below. If you wish to use different pins on the Arduino, just change the default pins specified in constants.h.
 
-9. Upload the sketch to the Yun. The LCD should light up and display the message "Starting.." for a second or two.
+9. Upload the sketch to the Yun. The LCD should light up and display the message "Starting..." for a second or two.
 
 10. Once the start message disappears, push the button. The LCD will light up, the train station name will appear in the first row, and after a second, the train times on the second row. 
 
@@ -54,7 +60,7 @@ After five seconds, the LCD backlight will turn off and the screen will be clear
 
 ##Breadboard Wiring Diagram
 
-![Breadboard wiring diagram](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/breadboard-wiring.png)
+![Breadboard wiring diagram](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/breadboard-wiring.png)
 
 
 ## License
