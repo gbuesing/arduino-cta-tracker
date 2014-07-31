@@ -20,9 +20,9 @@ import urllib2
 import xml.etree.ElementTree as ET
 
 
-API_KEY = sys.argv[1]
+API_KEY = 'key'
 STOP_ID = sys.argv[2]
-DELIMETER = sys.argv[3]
+DELIMETER = ' '
 
 def get_xml_from_api():
   api_url = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=" + API_KEY + "&stpid=" + STOP_ID
