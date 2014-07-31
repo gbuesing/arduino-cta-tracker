@@ -8,6 +8,12 @@ import xml.etree.ElementTree as ET
 #
 # Northbound Damen & Irving Park:
 #   python cta_bus.py '50' '8951'
+#
+# Westbound Irving Park & Wolcott
+#   python cta_bus.py '80' 5686'
+#
+# Eastbound Irving Park & Wolcott
+#   python cta_bus.py '80' 5661'
 
 # Get stop ids for route:
 #  curl 'http://www.ctabustracker.com/bustime/api/v1/getstops?key=key&rt=80&dir=Eastbound'
