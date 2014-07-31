@@ -1,13 +1,51 @@
-#define CTA_API_KEY "yourkey" // get key at: http://www.transitchicago.com/developers/traintrackerapply.aspx
-#define CTA_STOP_ID "30282" // download zip of stops: http://www.transitchicago.com/developers/ttdocs/#_Toc296199909
-#define CTA_STOP_NAME "Brown Ln to Loop"
-#define SCRIPT_PATH "/root/cta.py" // path to Linux-side script
-#define MINUTES_DELIMETER " " // display train times with space in between
+// Pins used
+#define LCD_PINS A5, A4, A3, A2, A1, A0
+#define LCD_BACKLIGHT_PIN 13
+#define KEYPAD_ROW_PINS 8, 7, 6, 5
+#define KEYPAD_COL_PINS 4, 3, 2
+
+// Message to display when booting
 #define START_MESSAGE "Starting..."
 
-#define BUTTON_PIN A0
-#define LCD_PINS 2,3,4,5,6,7
-#define LCD_BACKLIGHT_PIN 8
-
+// How long to display command results (in milliseconds)
 #define SHOW_RESULTS_DELAY 5000
-#define BUTTON_DEBOUNCE_DELAY 5
+
+// Key definitions
+#define KEY_DEFAULT_LABEL "Date & Time"
+#define KEY_DEFAULT_COMMAND "date +'%l:%M%p %h %e'"
+
+#define KEY_1_LABEL "Brown Ln to Loop"
+#define KEY_1_COMMAND "python /root/cta_el.py '30282'"
+
+#define KEY_2_LABEL "Brn Ln to Kimball"
+#define KEY_2_COMMAND "python /root/cta_el.py '30281'"
+
+#define KEY_3_LABEL KEY_DEFAULT_LABEL
+#define KEY_3_COMMAND KEY_DEFAULT_COMMAND
+
+#define KEY_4_LABEL "South 50 IrvPk"
+#define KEY_4_COMMAND "python /root/cta_bus.py '50' '8827'"
+
+#define KEY_5_LABEL "North 50 IrvPk"
+#define KEY_5_COMMAND "python /root/cta_bus.py '50' '8951'"
+
+#define KEY_6_LABEL KEY_DEFAULT_LABEL
+#define KEY_6_COMMAND KEY_DEFAULT_COMMAND
+
+#define KEY_7_LABEL "West 80 Wolcott"
+#define KEY_7_COMMAND "python /root/cta_bus.py '80' '5686'"
+
+#define KEY_8_LABEL "East 80 Wolcott"
+#define KEY_8_COMMAND "python /root/cta_bus.py '80' '5661'"
+
+#define KEY_9_LABEL KEY_DEFAULT_LABEL
+#define KEY_9_COMMAND KEY_DEFAULT_COMMAND
+
+#define KEY_STAR_LABEL "Weather"
+#define KEY_STAR_COMMAND "python /root/weather.py current"
+
+#define KEY_0_LABEL "Forecast"
+#define KEY_0_COMMAND "python /root/weather.py forecast"
+
+#define KEY_POUND_LABEL "Sunset"
+#define KEY_POUND_COMMAND "python /root/weather.py sunset"
