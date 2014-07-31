@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 
 
 WOEID = '2379574'
+QUERY = sys.argv[1]
 
 def get_xml_from_api():
   api_url = "http://weather.yahooapis.com/forecastrss?w=" + WOEID
@@ -15,12 +16,18 @@ def get_xml_from_api():
 
 xml = get_xml_from_api()
 # print(xml)
+
 tree = ET.fromstring(xml)
 
-item = tree.find("channel/item")
-condition = item.find('yweather:condition', {'yweather': 'http://xml.weather.yahoo.com/ns/rss/1.0'})
-forecast = item.find('yweather:forecast', {'yweather': 'http://xml.weather.yahoo.com/ns/rss/1.0'})
 
-print(condition.attrib['temp'] + ' ' + condition.attrib['text'])
-print('H:' + forecast.attrib['high'] + ' L:' + forecast.attrib['low'])
+if 'current' == QUERY:
+  condition = tree.find('channel/item/yweather:condition', {'yweather': 'http://xml.weather.yahoo.com/ns/rss/1.0'})
+  print(condition.attrib['temp'] + ' ' + condition.attrib['text'])
 
+if 'forecast' == QUERY:
+  forecast = tree.find('channel/item/yweather:forecast', {'yweather': 'http://xml.weather.yahoo.com/ns/rss/1.0'})
+  print('High ' + forecast.attrib['high'] + ' Low ' + forecast.attrib['low'])
+
+if 'sunset' == QUERY:
+  astronomy = tree.find('channel/yweather:astronomy', {'yweather': 'http://xml.weather.yahoo.com/ns/rss/1.0'})
+  print(astronomy.attrib['sunset'])
