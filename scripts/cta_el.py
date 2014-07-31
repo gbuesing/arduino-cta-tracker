@@ -21,7 +21,7 @@ import xml.etree.ElementTree as ET
 
 
 API_KEY = 'key'
-STOP_ID = sys.argv[2]
+STOP_ID = sys.argv[1]
 DELIMETER = ' '
 
 def get_xml_from_api():
