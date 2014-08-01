@@ -1,14 +1,10 @@
-#CTA L-Train Arrival Time Display Device (Powered by Arduino Yun)
+#CTA Arrival Time Display Device (Powered by Arduino Yun)
 
-Code and instructions for making an [Arduino Yun](http://arduino.cc/en/Main/ArduinoBoardYun)-based device that shows train arrival times for your favorite [CTA](http://www.transitchicago.com/) train stop.  Push the button, and live train arrival times are displayed on the LCD.
+Code and instructions for making an [Arduino Yun](http://arduino.cc/en/Main/ArduinoBoardYun)-based device that shows arrival times for your favorite [CTA](http://www.transitchicago.com/) train and bus stops.  Push the button, and live train and bus arrival times are displayed on the LCD, as well as date, time, and weather.
 
-A Python script uploaded to the Linux side of the Yun queries the [CTA Train Tracker API](http://www.transitchicago.com/developers/traintracker.aspx) and returns results to the Arduino sketch in a ready-to-display format.
+Python scripts uploaded to the Linux side of the Yun query the relevant API and return results to the Arduino sketch in a ready-to-display format.
 
-Here's what this looks like wired to a breadboard:
-
-![Breadboarded prototype](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/prototype.jpg)
-
-To finish the project, I plan to solder the circuit to a protoshield and place in an enclosure which I can mount next to the front door.
+You can configure keypad buttons to run any script you upload to the Linux side, so if you wanted to return results for some other transit system entirely, you just need to write a simple script to query the relevant API.
 
 
 ##Parts Needed
@@ -22,15 +18,24 @@ To finish the project, I plan to solder the circuit to a protoshield and place i
 - [Enclosure](https://www.adafruit.com/products/271)
 
 
+##CTA API Keys
+
+To track train times, you'll need a [CTA Train Tracker API Developer Key](http://www.transitchicago.com/developers/traintrackerapply.aspx). 
+
+To track bus times, you'll need a [CTA Bus Tracker API Key](http://www.transitchicago.com/developers/bustracker.aspx). 
+
+Approval for each of these may take a day or two.
+
+
 ##Assembly Steps
 
-1. [Apply for a CTA Train Tracker API Developer Key](http://www.transitchicago.com/developers/traintrackerapply.aspx). Approval may take a day or two.
+1. 
 
 2. Ensure Yun is set up so that it can reach Wifi, and that the time zone is set to "America/Chicago" in the configuration.
 
-3. Upload cta.py script to Linux side of Yun via SCP: 
+3. Upload scripts directory to Linux side of Yun via SCP: 
 
-    ```scp cta.py root@arduino.local:/root``` 
+    ```scp -r scripts/ root@arduino.local:/root``` 
 
 4. SSH into Yun: 
 
@@ -43,7 +48,7 @@ To finish the project, I plan to solder the circuit to a protoshield and place i
     opkg install python-expat
     ```
 
-5. Copy constants.h.sample file in this repo to constants.h, and set ```CTA_API_KEY``` constant to your developer key.
+5. Copy constants.h.sample file in this repo to constants.h.
 
 6. Find your stop in the [Stop List Quick Reference Zipfile](http://www.transitchicago.com/developers/ttdocs/#_Toc296199909). Unzip and look in cta_L_stops.csv for the stop id (in the leftmost column) that corresponds to your station, train line and direction of travel.  Set ```CTA_STOP_ID``` in constants.h to this ID.
 
