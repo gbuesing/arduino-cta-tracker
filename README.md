@@ -58,9 +58,9 @@ To finish the project, I plan to solder the circuit to a protoshield and place i
 After five seconds, the LCD backlight will turn off and the screen will be cleared. You can push the button again to query anew.
 
 
-##Breadboard Wiring Diagram
+##Wiring Diagram
 
-![Breadboard wiring diagram](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/breadboard-wiring.png)
+![Wiring diagram](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/wiring.png)
 
 
 ## License
