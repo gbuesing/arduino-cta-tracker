@@ -38,8 +38,8 @@
 #define KEY_8_LABEL "East 80 Wolcott"
 #define KEY_8_COMMAND "python /root/scripts/cta_bus.py '80' '5661'"
 
-#define KEY_9_LABEL KEY_DEFAULT_LABEL
-#define KEY_9_COMMAND KEY_DEFAULT_COMMAND
+#define KEY_9_LABEL "Magic 8 Ball"
+#define KEY_9_COMMAND "python /root/scripts/magic_8.py"
 
 #define KEY_STAR_LABEL "Weather"
 #define KEY_STAR_COMMAND "python /root/scripts/weather.py current"
