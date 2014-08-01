@@ -17,9 +17,9 @@ To finish the project, I plan to solder the circuit to a protoshield and place i
 - micro-USB power supply for Yun
 - Backlit 16x2 LCD screen, with headers soldered on for breadboarding
 - Potentiometer (for adjusting LCD screen contrast)
-- Button
-- 10K resistor
-- Breadboard and wires
+- [3x4 Matrix Keypad](https://www.adafruit.com/product/419)
+- Tiny breadboard
+- [Enclosure](https://www.adafruit.com/products/271)
 
 
 ##Assembly Steps
