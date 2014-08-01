@@ -30,4 +30,4 @@ if 'forecast' == QUERY:
 
 if 'sunset' == QUERY:
   astronomy = tree.find('channel/yweather:astronomy', {'yweather': 'http://xml.weather.yahoo.com/ns/rss/1.0'})
-  print(astronomy.attrib['sunset'])
+  print(astronomy.attrib['sunrise'] + '/' + astronomy.attrib['sunset'])
