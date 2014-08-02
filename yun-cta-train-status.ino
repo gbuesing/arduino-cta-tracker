@@ -5,7 +5,7 @@
 #include "constants.h"
 
 
-LiquidCrystal lcd(A5, A4, A3, A2, A1, A0);
+LiquidCrystal lcd(LCD_PINS);
 
 const byte ROWS = 4;
 const byte COLS = 3;
