@@ -1,2 +1,5 @@
 .DS_Store
 constants.h
+scripts/config.py
+scripts/config.pyc
+

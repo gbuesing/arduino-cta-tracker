@@ -18,14 +18,14 @@ import sys
 import datetime
 import urllib2
 import xml.etree.ElementTree as ET
+import config
 
 
-API_KEY = 'key'
 STOP_ID = sys.argv[1]
 DELIMETER = ' '
 
 def get_xml_from_api():
-  api_url = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=" + API_KEY + "&stpid=" + STOP_ID
+  api_url = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=" + config.CTA_TRAIN_TRACKER_API_KEY + "&stpid=" + STOP_ID
   return urllib2.urlopen(api_url).read()
 
 def extract_minutes_from_xml(xml):

@@ -2,6 +2,7 @@ import sys
 import datetime
 import urllib2
 import xml.etree.ElementTree as ET
+import config
 
 # Southbound Damen & Irving Park:
 #   python cta_bus.py '50' '8827'
@@ -20,13 +21,12 @@ import xml.etree.ElementTree as ET
 
 # date +'%l:%M%p %h %e'
 
-API_KEY = 'key'
 ROUTE_ID = sys.argv[1] 
 STOP_ID = sys.argv[2]
 DELIMETER = ' '
 
 def get_xml_from_api():
-  api_url = "http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=" + API_KEY + "&rt=" + ROUTE_ID + "&stpid=" + STOP_ID
+  api_url = "http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=" + config.CTA_BUS_TRACKER_API_KEY + "&rt=" + ROUTE_ID + "&stpid=" + STOP_ID
   return urllib2.urlopen(api_url).read()
 
 def extract_minutes_from_xml(xml):
