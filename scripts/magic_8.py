@@ -1,6 +1,5 @@
-import sys
 import random
-import time
+
 
 answers = """
 It is certain
