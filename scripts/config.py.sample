@@ -2,6 +2,11 @@
 # Copy this file to config.py and edit api keys:
 #
 #   cp scripts/config.py.sample scripts/config.py
+#
+# Get Train Tracker API key: http://www.transitchicago.com/developers/traintrackerapply
+#
+# Get Bus Tracker API key: http://www.transitchicago.com/developers/bustracker.aspx
 
 CTA_TRAIN_TRACKER_API_KEY = 'key'
+
 CTA_BUS_TRACKER_API_KEY   = 'key'

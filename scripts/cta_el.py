@@ -1,14 +1,16 @@
 """
-Script for pulling train times from CTA API for a specific stop ID,
+Script for pulling train times from CTA train tracker API for a specific stop ID,
 for displaying via Arduino Yun on an LCD.
+
+Requires CTA_TRAIN_TRACKER_API_KEY constant set in config.py.
 
 Usage:
 
-  python cta.py apikey stopid delimeter
+  python cta_el.py stopid
 
 e.g:
   
-  python cta.py abc123 12345 ','
+  python cta_el.py '30282'
 
 Necesary to first install python-expat on Yun -- SSH in and run:
   opkg update

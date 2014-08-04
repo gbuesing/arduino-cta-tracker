@@ -1,3 +1,25 @@
+"""
+Script for pulling bus times from CTA Bus Tracker API for a specific stop ID,
+for displaying via Arduino Yun on an LCD.
+
+Requires CTA_BUS_TRACKER_API_KEY constant set in config.py.
+
+Usage:
+
+  python cta_bus.py routeid stopid
+
+e.g:
+  
+  python cta_bus.py '50' '8827'
+
+To get stopids for a route:
+
+  http://www.ctabustracker.com/bustime/api/v1/getstops?key=key&rt=80&dir=Eastbound
+
+Necesary to first install python-expat on Yun -- SSH in and run:
+  opkg update
+  opkg install python-expat
+"""
 import sys
 import datetime
 import urllib2
@@ -15,11 +37,6 @@ import config
 #
 # Eastbound Irving Park & Wolcott
 #   python cta_bus.py '80' 5661'
-
-# Get stop ids for route:
-#  curl 'http://www.ctabustracker.com/bustime/api/v1/getstops?key=key&rt=80&dir=Eastbound'
-
-# date +'%l:%M%p %h %e'
 
 ROUTE_ID = sys.argv[1] 
 STOP_ID = sys.argv[2]
