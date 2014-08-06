@@ -23,7 +23,7 @@ Other keys return bus times, weather, current date & time, and a magic 8 ball. E
 
 ##CTA API keys
 
-You'll need a [CTA Train Tracker API Developer Key](http://www.transitchicago.com/developers/traintrackerapply.aspx) and a [CTA Bus Tracker API Key](http://www.transitchicago.com/developers/bustracker.aspx). 
+You'll need a [CTA Train Tracker API Key](http://www.transitchicago.com/developers/traintrackerapply.aspx) and a [CTA Bus Tracker API Key](http://www.transitchicago.com/developers/bustracker.aspx). 
 
 Approval for each of these may take a day or two.
 
@@ -34,7 +34,7 @@ The scripts directory in this project contains python scripts for querying CTA t
 
 1. Make sure the Yun is connected to Wifi, and that the time zone is set to "America/Chicago" in the configuration.
 
-2. In the scripts/directory, Ccopy ```config.py.sample``` to ```config.py``` and add your CTA bus and train API keys.
+2. In the scripts directory, copy ```config.py.sample``` to ```config.py``` and add your CTA bus and train API keys.
 
 3. Upload scripts directory to Linux side of Yun via SCP: 
 
@@ -49,22 +49,21 @@ The scripts directory in this project contains python scripts for querying CTA t
     ```
     opkg update
     opkg install python-expat
+    ```
 
 5. While still SSH'd in, test the scripts to make sure they're working:
 
   ```
+  # return times for Southbound Brown line at Irving Park
   python /root/scripts/cta_el.py '30282' 
   ```
 
-  ... will return times for Southbound Brown line at Irving Park
-
   ```
+  # return times for Southbound 50 bus at Irving Park
   python /root/scripts/cta_bus.py '50' '8827'
   ```
 
-  ... will return times for Southbound 50 bus at Irving Park
-
-  To return times for different stops, you'll need the corresponding stop ids; check the comments inside ```cta_el.py`` and ```cta_bus.py``` for instructions.
+  To return times for different stops, you'll need the corresponding stop ids; check the comments inside ```cta_el.py``` and ```cta_bus.py``` for instructions.
 
   If the numbers returned seem excessively large, run ``date`` and confirm that it's returning the correct time in CST. Sometimes after booting up, it takes a minute for the clock to sync.
 
@@ -78,7 +77,7 @@ The scripts directory in this project contains python scripts for querying CTA t
 
 1. Copy constants.h.sample file in this repo to constants.h.
 
-2 In ```constants.h```, change the labels and commands for each key as desired. You'll want to replace stop ids used for ```cta_el.py`` and ```cta_bus.py``` commands to stops near you -- see the top of these files for how to get stop ids.
+2. In ```constants.h```, change the labels and commands for each key as desired. You'll want to replace stop ids used for ```cta_el.py``` and ```cta_bus.py``` commands to stops near you -- see the top of these files for how to get stop ids.
 
 3. Upload the sketch to the Yun.
 
@@ -96,6 +95,8 @@ Note that I'm bending jumper cable pins off to the side, so that everything fits
 ![Opened](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/opened.jpg)
 
 ![Breadboard closeup](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/breadboard_closeup.jpg)
+
+The wiring for the keypad is threaded through the opening in the enclosure behind it. The keypad is easily attached to the enclosure via the sticky on back.
 
 ![Assembled off](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/assembled_off.jpg)
 
