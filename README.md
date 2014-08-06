@@ -2,7 +2,7 @@
 
 Code and instructions for making an [Arduino Yun](http://arduino.cc/en/Main/ArduinoBoardYun)-based device that shows arrival times for nearby [CTA](http://www.transitchicago.com/) train and bus stops on an LCD.
 
-![Assembled and on](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/assembled_on.png)
+![Assembled and on](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/assembled_on.jpg)
 
 Much easier to simply push a button, vs. pulling out my phone, unlocking, finding the Buster app, etc. I've got this device by the front door at home, so that I can time my exit.
 
