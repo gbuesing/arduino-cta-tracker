@@ -12,6 +12,8 @@ e.g:
   
   python cta_el.py '30282'
 
+To find a specific stop id, you'll need to refer to the Stop List Quick Reference Zipfile, which you can download from here: http://www.transitchicago.com/developers/ttdocs/#_Toc296199909
+
 Necesary to first install python-expat on Yun -- SSH in and run:
   opkg update
   opkg install python-expat

@@ -1,37 +1,40 @@
-#CTA Arrival Time Display Device (Powered by Arduino Yun)
+#Arduino CTA Tracker
 
-Code and instructions for making an [Arduino Yun](http://arduino.cc/en/Main/ArduinoBoardYun)-based device that shows arrival times for your favorite [CTA](http://www.transitchicago.com/) train and bus stops.  Push the button, and live train and bus arrival times are displayed on the LCD, as well as date, time, and weather.
+Code and instructions for making an [Arduino Yun](http://arduino.cc/en/Main/ArduinoBoardYun)-based device that shows arrival times for nearby [CTA](http://www.transitchicago.com/) train and bus stops on an LCD.
 
-Python scripts uploaded to the Linux side of the Yun query the relevant API and return results to the Arduino sketch in a ready-to-display format.
+![Assembled and on](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/assembled_on.png)
 
-You can configure keypad buttons to run any script you upload to the Linux side, so if you wanted to return results for some other transit system entirely, you just need to write a simple script to query the relevant API.
+Much easier to simply push a button, vs. pulling out my phone, unlocking, finding the Buster app, etc. I've got this device by the front door at home, so that I can time my exit.
+
+Other keys return bus times, weather, current date & time, and a magic 8 ball. Each of the keys run a command line script on the Linux side of the Yun; the string returned on stdout is then displayed on the LCD. So, easy to expand this to return whatever data you find useful.
 
 
-##Parts Needed
+##Parts needed
 
 - Arduino Yun
 - micro-USB power supply for Yun
-- Backlit 16x2 LCD screen, with headers soldered on for breadboarding
+- Backlit 16x2 LCD screen, with headers soldered on
 - Potentiometer (for adjusting LCD screen contrast)
 - [3x4 Matrix Keypad](https://www.adafruit.com/product/419)
 - Tiny breadboard
-- [Enclosure](https://www.adafruit.com/products/271)
+- Jumper wires
+- [Adafruit Arduino Enclosure](https://www.adafruit.com/products/271)
 
 
-##CTA API Keys
+##CTA API keys
 
-To track train times, you'll need a [CTA Train Tracker API Developer Key](http://www.transitchicago.com/developers/traintrackerapply.aspx). 
-
-To track bus times, you'll need a [CTA Bus Tracker API Key](http://www.transitchicago.com/developers/bustracker.aspx). 
+You'll need a [CTA Train Tracker API Developer Key](http://www.transitchicago.com/developers/traintrackerapply.aspx) and a [CTA Bus Tracker API Key](http://www.transitchicago.com/developers/bustracker.aspx). 
 
 Approval for each of these may take a day or two.
 
 
-##Assembly Steps
+## Uploading data scripts to the Yun
 
-1. 
+The scripts directory in this project contains python scripts for querying CTA train and bus apis, Yahoo weather, and a magic 8 ball. You'll need to upload these to the Linux side of the Yun:
 
-2. Ensure Yun is set up so that it can reach Wifi, and that the time zone is set to "America/Chicago" in the configuration.
+1. Make sure the Yun is connected to Wifi, and that the time zone is set to "America/Chicago" in the configuration.
+
+2. In the scripts/directory, Ccopy ```config.py.sample``` to ```config.py``` and add your CTA bus and train API keys.
 
 3. Upload scripts directory to Linux side of Yun via SCP: 
 
@@ -46,26 +49,57 @@ Approval for each of these may take a day or two.
     ```
     opkg update
     opkg install python-expat
-    ```
 
-5. Copy constants.h.sample file in this repo to constants.h.
+5. While still SSH'd in, test the scripts to make sure they're working:
 
-6. Find your stop in the [Stop List Quick Reference Zipfile](http://www.transitchicago.com/developers/ttdocs/#_Toc296199909). Unzip and look in cta_L_stops.csv for the stop id (in the leftmost column) that corresponds to your station, train line and direction of travel.  Set ```CTA_STOP_ID``` in constants.h to this ID.
+  ```
+  python /root/scripts/cta_el.py '30282' 
+  ```
 
-7. Set ```CTA_STOP_NAME``` in constants.h to a short (16 chars or less) description of your stop for display on the LCD, e.g. "Brown Ln to Loop"
+  ... will return times for Southbound Brown line at Irving Park
 
-8. Add parts to the breadboard and wire up -- see the Breadboard Wiring Diagram below. If you wish to use different pins on the Arduino, just change the default pins specified in constants.h.
+  ```
+  python /root/scripts/cta_bus.py '50' '8827'
+  ```
 
-9. Upload the sketch to the Yun. The LCD should light up and display the message "Starting..." for a second or two.
+  ... will return times for Southbound 50 bus at Irving Park
 
-10. Once the start message disappears, push the button. The LCD will light up, the train station name will appear in the first row, and after a second, the train times on the second row. 
+  To return times for different stops, you'll need the corresponding stop ids; check the comments inside ```cta_el.py`` and ```cta_bus.py``` for instructions.
+
+  If the numbers returned seem excessively large, run ``date`` and confirm that it's returning the correct time in CST. Sometimes after booting up, it takes a minute for the clock to sync.
+
+
+## Wiring it up
+
+![Wiring diagram](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/wiring.png)
+
+
+## Preparing the sketch and testing
+
+1. Copy constants.h.sample file in this repo to constants.h.
+
+2 In ```constants.h```, change the labels and commands for each key as desired. You'll want to replace stop ids used for ```cta_el.py`` and ```cta_bus.py``` commands to stops near you -- see the top of these files for how to get stop ids.
+
+3. Upload the sketch to the Yun.
+
+4. Wait for "Starting..." message to disappear, and then press a key. The LCD backlight will turn on; the label for the key should immediately appear on the first row, and the results returned from the command on the second row, which may take a second or two.
 
 After five seconds, the LCD backlight will turn off and the screen will be cleared. You can push the button again to query anew.
 
 
-##Wiring Diagram
+## Finishing the device
 
-![Wiring diagram](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/wiring.png)
+I couldn't find a protoshield that would fit the Yun, so I just wired onto a tiny breadboard that sits on top of the Yun. The small jumper wires going from the breadboard to the Yun header pins keep it in place, so I didn't bother using the sticky on the back of the breadboard.
+
+Note that I'm bending jumper cable pins off to the side, so that everything fits in the case.
+
+![Opened](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/opened.jpg)
+
+![Breadboard closeup](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/breadboard_closeup.jpg)
+
+![Assembled off](https://raw.githubusercontent.com/gbuesing/yun-cta-train-status/master/images/assembled_off.jpg)
+
+The bottom panel of the enclose doesn't quite match the bottom of the Yun, so I just left it off.
 
 
 ## License
