@@ -34,12 +34,8 @@ def get_xml_from_api():
 
 def extract_minutes_from_xml(xml):
   tree = ET.fromstring(xml)
-  out = []
-  for elem in tree.findall('eta/arrT'):
-    datestr = elem.text
-    minutes = get_minutes_from_now(datestr)
-    out.append(minutes)
-  return out
+  elements = tree.findall('eta/arrT')
+  return [get_minutes_from_now(elem.text) for elem in elements]
 
 def get_minutes_from_now(datestr):
   now = datetime.datetime.now()
