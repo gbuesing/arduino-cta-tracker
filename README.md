@@ -1,4 +1,4 @@
-#Arduino CTA Tracker
+# Arduino CTA Tracker
 
 Code and instructions for making an [Arduino Yun](http://arduino.cc/en/Main/ArduinoBoardYun)-based device that shows arrival times for nearby [CTA](http://www.transitchicago.com/) train and bus stops on an LCD.
 
@@ -9,7 +9,7 @@ Much easier to simply push a button, vs. pulling out my phone, unlocking, findin
 Other keys return bus times, weather, current date & time, and a magic 8 ball. Each of the keys run a command line script on the Linux side of the Yun; the string returned on stdout is then displayed on the LCD. So, easy to expand this to return whatever data you find useful.
 
 
-##Parts needed
+## Parts needed
 
 - Arduino Yun
 - micro-USB power supply for Yun
@@ -21,7 +21,7 @@ Other keys return bus times, weather, current date & time, and a magic 8 ball. E
 - [Adafruit Arduino Enclosure](https://www.adafruit.com/products/271)
 
 
-##CTA API keys
+## CTA API keys
 
 You'll need a [CTA Train Tracker API Key](http://www.transitchicago.com/developers/traintrackerapply.aspx) and a [CTA Bus Tracker API Key](http://www.transitchicago.com/developers/bustracker.aspx). 
 
